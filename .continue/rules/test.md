@@ -1,0 +1,5 @@
+---
+{}
+---
+
+Tu respecte ESlint
