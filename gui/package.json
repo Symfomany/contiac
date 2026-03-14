@@ -7,10 +7,9 @@
   "scripts": {
     "dev": "vite",
     "tsc:check": "tsc -p ./ --noEmit",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "vitest": "vitest run  --coverage",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "test:watch": "vitest",

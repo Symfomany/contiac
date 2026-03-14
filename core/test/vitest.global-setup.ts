@@ -5,7 +5,9 @@ import path from "path";
 // IMPORTANT: the CONTINUE_GLOBAL_DIR environment variable is used in utils/paths for getting all local paths
 export default async function () {
   process.env.CONTINUE_GLOBAL_DIR = path.join(__dirname, ".continue-test");
+  const dir = path.join(__dirname, ".continue-test");
+  process.env.CONTINUE_GLOBAL_DIR = dir;
   if (fs.existsSync(process.env.CONTINUE_GLOBAL_DIR)) {
-    fs.rmdirSync(process.env.CONTINUE_GLOBAL_DIR, { recursive: true });
+    fs.rmdirSync(process.env.CONTINUE_GLOBAL_DIR);
   }
 }

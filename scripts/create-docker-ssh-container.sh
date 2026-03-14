@@ -18,7 +18,7 @@ EOF
 
 docker build -t continue-ubuntu-ssh . # build the image
 
-# rm Dockerfile # remove the created Dockerfile
+rm Dockerfile # remove the created Dockerfile
 
 container_name="continue-ssh-container"
 

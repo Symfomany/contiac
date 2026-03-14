@@ -14,7 +14,7 @@ import { LocalPlatformClient } from "./LocalPlatformClient";
 
 vi.mock("../../util/paths", { spy: true });
 
-describe.skip("LocalPlatformClient", () => {
+describe("LocalPlatformClient", () => {
   const testFQSN: FQSN = {
     packageSlugs: [
       {
@@ -53,7 +53,6 @@ describe.skip("LocalPlatformClient", () => {
       testControlPlaneClient = testFixtures.testControlPlaneClient;
       testIde = testFixtures.testIde;
     },
-    30000,
   );
 
   let secretValue: string;
@@ -71,7 +70,6 @@ describe.skip("LocalPlatformClient", () => {
         .map(([key, value]) => `${key}=${value}`)
         .join("\n");
     },
-    30000,
   );
 
   afterEach(() => {
@@ -111,7 +109,7 @@ describe.skip("LocalPlatformClient", () => {
       const utilPaths = await import("../../util/paths");
       getContinueDotEnv = vi.fn(() => envKeyValues);
       utilPaths.getContinueDotEnv = getContinueDotEnv;
-    }, 30000);
+    });
 
     test("should be able to get secrets from ~/.continue/.env files", async () => {
       const localPlatformClient = new LocalPlatformClient(
@@ -261,7 +259,7 @@ describe.skip("LocalPlatformClient", () => {
       // Clear any potentially set process.env variables from previous tests in this block
       delete process.env[testFQSN.secretName];
       delete process.env[testFQSN2.secretName];
-    }, 30000);
+    });
 
     afterEach(() => {
       // Restore original process.env

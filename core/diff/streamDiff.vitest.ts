@@ -58,15 +58,11 @@ function displayDiff(diff: DiffLine[]) {
 async function expectDiff(file: string) {
   const testFilePath = path.join(__dirname, "test-examples", file + ".diff");
   const testFileContents = fs.readFileSync(testFilePath, "utf-8");
-
-  let [oldText, newText, expectedDiff] = testFileContents
+  const [oldText, newText, expectedDiff] = testFileContents
     .split("\n---\n")
     .map((s) => s.replace(/^\n+/, "").trimEnd());
-  if (typeof newText !== "string") newText = "";
-  if (typeof oldText !== "string") oldText = "";
-
-  const oldLines = oldText?.split("\n") ?? [];
-  const newLines = newText?.split("\n") ?? [];
+  const oldLines = oldText.split("\n");
+  const newLines = newText.split("\n");
   const { streamDiffs, myersDiffs } = await collectDiffs(oldLines, newLines);
   const displayedDiff = displayDiff(streamDiffs);
 
@@ -220,9 +216,9 @@ describe("streamDiff(", () => {
     expect(getMyersDiffType(myersDiffs[0])).toBe("old");
   });
 
-  // test("tabs vs. spaces differences are ignored", async () => {
-  //   await expectDiff("fastapi-tabs-vs-spaces.py");
-  // });
+  test("tabs vs. spaces differences are ignored", async () => {
+    await expectDiff("fastapi-tabs-vs-spaces.py");
+  });
 
   test("trailing whitespaces should match ", async () => {
     const oldLines = ["first item  ", "second arg ", "third param  "];
@@ -327,15 +323,15 @@ describe("streamDiff(", () => {
     ]);
   });
 
-  // test("FastAPI example", async () => {
-  //   await expectDiff("fastapi.py");
-  // });
+  test("FastAPI example", async () => {
+    await expectDiff("fastapi.py");
+  });
 
-  // test("FastAPI comments", async () => {
-  //   await expectDiff("add-comments.py");
-  // });
+  test("FastAPI comments", async () => {
+    await expectDiff("add-comments.py");
+  });
 
-  // test("Mock LLM example", async () => {
-  //   await expectDiff("mock-llm.ts");
-  // });
+  test("Mock LLM example", async () => {
+    await expectDiff("mock-llm.ts");
+  });
 });

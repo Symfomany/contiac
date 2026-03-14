@@ -96,7 +96,7 @@ afterEach(() => {
   vi.useRealTimers(); // Restore real timers after each test
 });
 
-it.skip("should refresh tokens on initialization when sessions exist", async () => {
+it("should refresh tokens on initialization when sessions exist", async () => {
   // Mock setInterval to prevent the refresh interval
   const originalSetInterval = global.setInterval;
   global.setInterval = vi.fn().mockReturnValue(123 as any);
@@ -173,7 +173,7 @@ it.skip("should refresh tokens on initialization when sessions exist", async () 
   }
 });
 
-it.skip("should not remove sessions during transient network errors", async () => {
+it("should not remove sessions during transient network errors", async () => {
   // Setup existing sessions with a valid token
   const validToken = createJwt({ expired: false });
   const mockSession = {
@@ -268,7 +268,7 @@ it.skip("should not remove sessions during transient network errors", async () =
   }
 });
 
-it.skip("should refresh tokens at regular intervals rather than based on expiration", async () => {
+it("should refresh tokens at regular intervals rather than based on expiration", async () => {
   // Setup existing sessions with a valid token
   const validToken = createJwt({ expired: false });
   const mockSession = {
@@ -400,7 +400,7 @@ it.skip("should refresh tokens at regular intervals rather than based on expirat
   }
 });
 
-it.skip("should remove session if token refresh fails with authentication error", async () => {
+it("should remove session if token refresh fails with authentication error", async () => {
   // Setup existing sessions with a valid token
   const validToken = createJwt({ expired: false });
   const mockSession = {
@@ -481,7 +481,7 @@ it.skip("should remove session if token refresh fails with authentication error"
   }
 });
 
-it.skip("should remove session if token refresh returns Unauthorized error message", async () => {
+it("should remove session if token refresh returns Unauthorized error message", async () => {
   // Setup existing sessions with a valid token
   const validToken = createJwt({ expired: false });
   const mockSession = {
@@ -563,7 +563,7 @@ it.skip("should remove session if token refresh returns Unauthorized error messa
   }
 });
 
-it.skip("should preserve valid tokens during network errors by retrying", async () => {
+it("should preserve valid tokens during network errors by retrying", async () => {
   // Mock Date.now to return a fixed timestamp for token validation
   const originalDateNow = Date.now;
   const currentTimestamp = Date.now();
@@ -641,7 +641,7 @@ it.skip("should preserve valid tokens during network errors by retrying", async 
   }
 });
 
-it.skip("should remove expired tokens when refresh fails with a 401 error", async () => {
+it("should remove expired tokens when refresh fails with a 401 error", async () => {
   // Mock Date.now to return a time that makes tokens appear expired
   const originalDateNow = Date.now;
   const futureTime = Date.now() + 7200000; // 2 hours in the future
@@ -704,7 +704,7 @@ it.skip("should remove expired tokens when refresh fails with a 401 error", asyn
   }
 });
 
-it.skip("should implement exponential backoff for failed refresh attempts", async () => {
+it("should implement exponential backoff for failed refresh attempts", async () => {
   // Setup existing sessions with a valid token
   const validToken = createJwt({ expired: false });
   const mockSession = {

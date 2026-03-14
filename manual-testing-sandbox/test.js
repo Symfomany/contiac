@@ -10,7 +10,6 @@ class Calculator {
   subtract(number) {
     return this;
   }
-  
   multiply(number) {
     this.result *= number;
     return this;

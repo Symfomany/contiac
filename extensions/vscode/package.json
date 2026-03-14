@@ -2,7 +2,7 @@
   "name": "genedis",
   "icon": "media/genedis.png",
   "author": "Enedis",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/continuedev/continue"
@@ -185,7 +185,7 @@
       {
         "command": "continue.focusEdit",
         "category": "Continue",
-        "title": "Edit Highlighted Code",
+        "title": "Add to Edit",
         "group": "Continue"
       },
       {
@@ -197,7 +197,7 @@
       {
         "command": "continue.focusContinueInputWithoutClear",
         "category": "Continue",
-        "title": "Add Highlighted Code to Context",
+        "title": "Add to Chat",
         "group": "Continue"
       },
       {
@@ -379,89 +379,8 @@
       {
         "command": "continue.openInNewWindow",
         "category": "Continue",
-        "title": "Open in New Window",
+        "title": "Open in new window",
         "group": "Continue"
-      },
-      {
-        "command": "continue.convertConfigJsonToConfigYaml",
-        "category": "Continue",
-        "title": "Convert config.json to config.yaml",
-        "group": "Continue"
-      },
-      {
-        "command": "continue.startLocalOllama",
-        "category": "Continue",
-        "title": "Start Local Ollama",
-        "group": "Continue"
-      },
-      {
-        "command": "continue.startLocalLemonade",
-        "category": "Continue",
-        "title": "Start Local Lemonade",
-        "group": "Continue"
-      },
-      {
-        "command": "continue.installModel",
-        "category": "Continue",
-        "title": "Install Model",
-        "group": "Continue"
-      },
-      {
-        "command": "continue.logAutocompleteOutcome",
-        "category": "Continue",
-        "title": "Log Autocomplete Outcome",
-        "group": "Continue"
-      },
-      {
-        "command": "continue.quickEditHistoryUp",
-        "category": "Continue",
-        "title": "Quick Edit History Up"
-      },
-      {
-        "command": "continue.quickEditHistoryDown",
-        "category": "Continue",
-        "title": "Quick Edit History Down"
-      },
-      {
-        "command": "continue.hideInlineTip",
-        "category": "Continue",
-        "title": "Hide Inline Tip"
-      },
-      {
-        "command": "continue.addModel",
-        "category": "Continue",
-        "title": "Add Model",
-        "group": "Continue"
-      },
-      {
-        "command": "continue.focusContinueSessionId",
-        "category": "Continue",
-        "title": "Focus Continue Session"
-      },
-      {
-        "command": "continue.customQuickActionSendToChat",
-        "category": "Continue",
-        "title": "Send to Chat"
-      },
-      {
-        "command": "continue.customQuickActionStreamInlineEdit",
-        "category": "Continue",
-        "title": "Inline Edit"
-      },
-      {
-        "command": "continue.defaultQuickAction",
-        "category": "Continue",
-        "title": "Default Quick Action"
-      },
-      {
-        "command": "continue.quickFix",
-        "category": "Continue",
-        "title": "Quick Fix"
-      },
-      {
-        "command": "continue.isSignedInToControlPlane",
-        "category": "Continue",
-        "title": "Check Control Plane Sign In"
       }
     ],
     "keybindings": [
@@ -533,6 +452,12 @@
         "key": "ctrl+shift+r"
       },
       {
+        "command": "continue.openInNewWindow",
+        "mac": "cmd+k cmd+m",
+        "key": "ctrl+k ctrl+m",
+        "when": "!terminalFocus"
+      },
+      {
         "command": "continue.toggleTabAutocompleteEnabled",
         "mac": "cmd+k cmd+a",
         "key": "ctrl+k ctrl+a",
@@ -601,6 +526,9 @@
         },
         {
           "command": "continue.generateRule"
+        },
+        {
+          "command": "continue.openInNewWindow"
         }
       ],
       "editor/context": [
@@ -809,10 +737,10 @@
   "dependencies": {
     "@continuedev/config-types": "file:../../packages/config-types",
     "@continuedev/fetch": "file:../../packages/fetch",
-    "@electron/rebuild": "^3.7.2",
     "@lancedb/vectordb-win32-x64-msvc": "^0.21.2",
+    "@electron/rebuild": "^4.0.3",
     "@reduxjs/toolkit": "^1.9.3",
-    "@vscode/ripgrep": "^1.17.0",
+    "@vscode/ripgrep": "^1.15.9",
     "axios": "^1.13.1",
     "core": "file:../../core",
     "cors": "^2.8.5",
@@ -844,14 +772,14 @@
     "react-redux": "^8.0.5",
     "read-last-lines": "^1.8.0",
     "rebuild": "^0.1.2",
+    "sqlite3": "^5.1.7",
     "request": "^2.88.2",
     "socket.io-client": "^4.7.2",
-    "sqlite3": "^5.1.7",
     "strip-ansi": "^7.1.0",
     "svg-builder": "^2.0.0",
-    "systeminformation": "^5.30.0",
+    "systeminformation": "^5.30.8",
     "tailwindcss": "^3.3.2",
-    "undici": "^6.21.3",
+    "undici": "^6.24.0",
     "uuid": "^9.0.1",
     "uuidv4": "^6.2.13",
     "vectordb": "0.4.20",

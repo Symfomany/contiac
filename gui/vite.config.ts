@@ -42,11 +42,6 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: "./src/util/test/setupTests.ts",
-    coverage: {
-      provider: "v8", // ou 'istanbul'
-      reporter: ["lcov", "text", "html"],
-      reportsDirectory: "coverage", // par défaut
-    },
     onConsoleLog(log, type) {
       if (type === "stderr") {
         if (

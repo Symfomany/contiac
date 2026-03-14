@@ -55,6 +55,5 @@
   "conventionalCommits.promptBody": false,
   "conventionalCommits.promptFooter": false,
   "conventionalCommits.promptScopes": true,
-  "conventionalCommits.scopes": ["reg"],
-  "vitest.disableWorkspaceWarning": true
+  "conventionalCommits.scopes": ["reg"]
 }

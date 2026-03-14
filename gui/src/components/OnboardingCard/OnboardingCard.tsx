@@ -2,8 +2,10 @@ import { OnboardingModes } from "core/protocol/core";
 import { useEffect } from "react";
 import { useAppSelector } from "../../redux/hooks";
 import { getLocalStorage, setLocalStorage } from "../../util/localStorage";
+import { ReusableCard } from "../ReusableCard";
+import { OnboardingCardTabs } from "./components/OnboardingCardTabs";
 import { OnboardingLocalTab } from "./components/OnboardingLocalTab";
-
+import { OnboardingModelsAddOnTab } from "./components/OnboardingModelsAddOnTab";
 import { OnboardingProvidersTab } from "./components/OnboardingProvidersTab";
 import { useOnboardingCard } from "./hooks/useOnboardingCard";
 
@@ -27,7 +29,7 @@ export function OnboardingCard({ isDialog }: OnboardingCardProps) {
   // Default to MODELS_ADD_ON tab if no active tab is set
   useEffect(() => {
     if (!activeTab) {
-      setActiveTab(OnboardingModes.API_KEY);
+      setActiveTab(OnboardingModes.MODELS_ADD_ON);
     }
   }, [activeTab, setActiveTab]);
 

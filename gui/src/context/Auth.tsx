@@ -23,7 +23,6 @@ import { IdeMessengerContext } from "./IdeMessenger";
 
 interface AuthContextType {
   session: ControlPlaneSessionInfo | undefined;
-  loginWithPlacide: () => Promise<boolean>;
   logout: () => void;
   login: (useOnboarding: boolean) => Promise<boolean>;
   selectedProfile: ProfileDescription | null;
@@ -81,22 +80,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setSession(undefined);
   };
 
-  const loginWithPlacide: AuthContextType["loginWithPlacide"] = () => {
-    return new Promise(async (resolve) => {
-      const success = ideMessenger.request("startLoginFlow", undefined);
-
-      await ideMessenger
-        .request("openUrl", "http://localhost:4180/")
-        .then((result) => {
-          if (result.status === "error") {
-            resolve(false);
-            return;
-          }
-          resolve(true);
-        });
-    });
-  };
-
   useEffect(() => {
     async function init() {
       const result = await ideMessenger.request("getControlPlaneSessionInfo", {
@@ -142,7 +125,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         session,
         logout,
         login,
-        loginWithPlacide,
         selectedProfile,
         profiles: currentOrg?.profiles ?? [],
         refreshProfiles,

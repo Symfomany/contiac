@@ -1,8 +1,8 @@
-# Genedis CLI
+# Continue CLI
 
-The Genedis CLI (`cn`) is a customizable command line coding agent.
+The Continue CLI (`cn`) is a customizable command line coding agent.
 
-![Genedis CLI Demo](./media/demo.gif)
+![Continue CLI Demo](./media/demo.gif)
 
 ## Installation
 

@@ -40,7 +40,7 @@ const TEST_CASES = [
   },
 ];
 
-describe.skip("RootPathContextService", () => {
+describe("RootPathContextService", () => {
   describe("should look for correct type definitions", () => {
     test.each(TEST_CASES)(
       "$language: $nodeType",

@@ -28,8 +28,6 @@ export type ToIdeFromWebviewOrCoreProtocol = {
   removeFile: [{ path: string }, void];
   showVirtualFile: [{ name: string; content: string }, void];
   openFile: [{ path: string }, void];
-  startLoginFlow: [undefined, void];
-  getToken: [undefined, string | null];
   openUrl: [string, void];
   runCommand: [{ command: string; options?: TerminalOptions }, void];
   getSearchResults: [{ query: string; maxResults?: number }, string];
@@ -97,14 +95,6 @@ export type ToIdeFromWebviewOrCoreProtocol = {
   logoutOfControlPlane: [undefined, void];
   reportError: [any, void];
   closeSidebar: [undefined, void];
-  loginWithGitlab: [
-    { url: string },
-    { status: "success" | "error"; error?: string },
-  ];
-  getOauthUserInfo: [
-    {},
-    { status: "success" | "error"; error?: string; data?: any },
-  ];
 };
 
 export type ToWebviewOrCoreFromIdeProtocol = {

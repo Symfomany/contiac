@@ -54,7 +54,7 @@ test("should be able to toggle modes", async () => {
   await getElementByText("Agent");
 });
 
-test.skip("should send a message and receive a response", async () => {
+test("should send a message and receive a response", async () => {
   const { ideMessenger, store } = await renderWithProviders(<Chat />);
 
   // First add and select the mock LLM

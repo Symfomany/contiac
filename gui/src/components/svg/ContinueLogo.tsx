@@ -1,3 +1,5 @@
+import { vscForeground } from "..";
+
 interface ContinueLogoProps {
   height?: number;
   width?: number;

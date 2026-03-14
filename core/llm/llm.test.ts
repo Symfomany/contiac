@@ -58,7 +58,7 @@ function testLLM(
     llm.completionOptions = { ...llm.completionOptions, ...COMPLETION_OPTIONS };
   });
 
-  describe.skip(llm.providerName + "/" + llm.model, () => {
+  describe(llm.providerName + "/" + llm.model, () => {
     test(
       "Stream Chat works",
       retryOnce(async () => {

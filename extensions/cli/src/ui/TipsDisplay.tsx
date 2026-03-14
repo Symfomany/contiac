@@ -37,6 +37,7 @@ const TipsDisplay: React.FC<TipsDisplayProps> = () => {
         {" "}
         {randomTip}
       </Text>
+      <Text> </Text>
     </Box>
   );
 };

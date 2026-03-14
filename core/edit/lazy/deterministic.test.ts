@@ -83,7 +83,7 @@ async function expectDiff(file: string) {
   );
 }
 
-describe.skip("deterministicApplyLazyEdit(", () => {
+describe("deterministicApplyLazyEdit(", () => {
   test("no changes", async () => {
     const file = dedent`
         function test() {

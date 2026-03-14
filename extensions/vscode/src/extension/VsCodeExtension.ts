@@ -8,19 +8,19 @@ import { Core } from "core/core";
 import { FromCoreProtocol, ToCoreProtocol } from "core/protocol";
 import { InProcessMessenger } from "core/protocol/messenger";
 import {
-    getConfigJsonPath,
-    getConfigTsPath,
-    getConfigYamlPath,
-    getContinueGlobalPath,
+  getConfigJsonPath,
+  getConfigTsPath,
+  getConfigYamlPath,
+  getContinueGlobalPath,
 } from "core/util/paths";
 import { v4 as uuidv4 } from "uuid";
 import * as vscode from "vscode";
 
 import { ContinueCompletionProvider } from "../autocomplete/completionProvider";
 import {
-    monitorBatteryChanges,
-    setupStatusBar,
-    StatusBarStatus,
+  monitorBatteryChanges,
+  setupStatusBar,
+  StatusBarStatus,
 } from "../autocomplete/statusBar";
 import { registerAllCommands } from "../commands";
 import { ContinueConsoleWebviewViewProvider } from "../ContinueConsoleWebviewViewProvider";
@@ -33,8 +33,8 @@ import { QuickEdit } from "../quickEdit/QuickEditQuickPick";
 import { setupRemoteConfigSync } from "../stubs/activation";
 import { UriEventHandler } from "../stubs/uriHandler";
 import {
-    getControlPlaneSessionInfo,
-    WorkOsAuthProvider,
+  getControlPlaneSessionInfo,
+  WorkOsAuthProvider,
 } from "../stubs/WorkOsAuthProvider";
 import { Battery } from "../util/battery";
 import { FileSearch } from "../util/FileSearch";
@@ -50,18 +50,18 @@ import { NextEditProvider } from "core/nextEdit/NextEditProvider";
 import { isNextEditTest } from "core/nextEdit/utils";
 import { JumpManager } from "../activation/JumpManager";
 import setupNextEditWindowManager, {
-    NextEditWindowManager,
+  NextEditWindowManager,
 } from "../activation/NextEditWindowManager";
 import {
-    HandlerPriority,
-    SelectionChangeManager,
+  HandlerPriority,
+  SelectionChangeManager,
 } from "../activation/SelectionChangeManager";
 import { GhostTextAcceptanceTracker } from "../autocomplete/GhostTextAcceptanceTracker";
 import { getDefinitionsFromLsp } from "../autocomplete/lsp";
 import {
-    clearDocumentContentCache,
-    handleTextDocumentChange,
-    initDocumentContentCache,
+  clearDocumentContentCache,
+  handleTextDocumentChange,
+  initDocumentContentCache,
 } from "../util/editLoggingUtils";
 import type { VsCodeWebviewProtocol } from "../webviewProtocol";
 

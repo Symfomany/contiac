@@ -13,7 +13,7 @@
     <depends optional="true" config-file="continueintellijextension-withJSON.xml">
         com.intellij.modules.json
     </depends>
-s
+
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="Continue" anchor="right" icon="com.github.continuedev.continueintellijextension.Icons.Continue"
                     factoryClass="com.github.continuedev.continueintellijextension.toolWindow.ContinuePluginToolWindowFactory"/>

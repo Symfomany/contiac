@@ -50,6 +50,15 @@ import { getMetaKeyLabel } from "./util/util";
 import { openEditorAndRevealRange } from "./util/vscode";
 import { VsCodeIde } from "./VsCodeIde";
 
+let fullScreenPanel: vscode.WebviewPanel | undefined;
+
+function getFullScreenTab() {
+  const tabs = vscode.window.tabGroups.all.flatMap((tabGroup) => tabGroup.tabs);
+  return tabs.find((tab) =>
+    (tab.input as any)?.viewType?.endsWith("continue.continueGUIView"),
+  );
+}
+
 type TelemetryCaptureParams = Parameters<typeof Telemetry.capture>;
 
 /**
@@ -65,9 +74,11 @@ function captureCommandTelemetry(
 function focusGUI() {
   // focus sidebar
   // Supporte les deux noms pour compatibilité
-  vscode.commands.executeCommand("genedis.genedisGUIView.focus").then(undefined, () => {
-    vscode.commands.executeCommand("continue.continueGUIView.focus");
-  });
+  vscode.commands
+    .executeCommand("genedis.genedisGUIView.focus")
+    .then(undefined, () => {
+      vscode.commands.executeCommand("continue.continueGUIView.focus");
+    });
   // vscode.commands.executeCommand("workbench.action.focusAuxiliaryBar");
 }
 
@@ -75,7 +86,28 @@ function hideGUI() {
   // focus sidebar
   vscode.commands.executeCommand("workbench.action.closeAuxiliaryBar");
   // vscode.commands.executeCommand("workbench.action.toggleAuxiliaryBar");
+  const fullScreenTab = getFullScreenTab();
+  if (fullScreenTab) {
+    // focus fullscreen
+    fullScreenPanel?.reveal();
+  } else {
+    // focus sidebar
+    vscode.commands.executeCommand("continue.continueGUIView.focus");
+    // vscode.commands.executeCommand("workbench.action.focusAuxiliaryBar");
+  }
 }
+
+// function hideGUI() {
+//   const fullScreenTab = getFullScreenTab();
+//   if (fullScreenTab) {
+//     // focus fullscreen
+//     fullScreenPanel?.dispose();
+//   } else {
+//     // focus sidebar
+//     vscode.commands.executeCommand("workbench.action.closeAuxiliaryBar");
+//     // vscode.commands.executeCommand("workbench.action.toggleAuxiliaryBar");
+//   }
+// }
 
 function waitForSidebarReady(
   sidebar: ContinueGUIWebviewViewProvider,
@@ -208,9 +240,11 @@ const getCommandsMap: (
 
       addCodeToContextFromRange(range, sidebar.webviewProtocol, prompt);
 
-      vscode.commands.executeCommand("genedis.genedisGUIView.focus").then(undefined, () => {
-        vscode.commands.executeCommand("continue.continueGUIView.focus");
-      });
+      vscode.commands
+        .executeCommand("genedis.genedisGUIView.focus")
+        .then(undefined, () => {
+          vscode.commands.executeCommand("continue.continueGUIView.focus");
+        });
     },
     // Passthrough for telemetry purposes
     "continue.defaultQuickAction": async (args: QuickEditShowParams) => {
@@ -612,6 +646,11 @@ const getCommandsMap: (
           description: getMetaKeyLabel() + " + L",
         },
         {
+          label: "$(screen-full) Open full screen chat",
+          description:
+            getMetaKeyLabel() + " + K, " + getMetaKeyLabel() + " + M",
+        },
+        {
           label: quickPickStatusText(targetStatus),
           description:
             getMetaKeyLabel() + " + K, " + getMetaKeyLabel() + " + A",
@@ -653,6 +692,8 @@ const getCommandsMap: (
           }
         } else if (selectedOption === "$(comment) Open chat") {
           vscode.commands.executeCommand("continue.focusContinueInput");
+        } else if (selectedOption === "$(screen-full) Open full screen chat") {
+          vscode.commands.executeCommand("continue.openInNewWindow");
         } else if (selectedOption === "$(gear) Open settings") {
           vscode.commands.executeCommand("continue.navigateTo", "/config");
         }
