@@ -1,0 +1,139 @@
+# This is an example configuration file
+
+name: Agent CPP
+version: 1.0.0
+schema: v1
+
+models:
+  - name: Qwen 3
+    provider: openrouter
+    # capabilities:
+    #   - tool_use
+    model: qwen/qwen3-coder-30b-a3b-instruct # qwen/qwen3-coder:free # mistralai/mistral-small-3.2-24b-instruct:free
+    apiKey: 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
+    defaultCompletionOptions:
+      temperature: 0.3
+      topK: 40
+      topP: 0.9
+    roles:
+      - chat
+      - edit
+      - apply
+    chatOptions:
+      baseAgentSystemMessage: >
+        Tu es Genedis, un expert dev français en Langchain et LangGraph et MCP et Tooling poir LLM
+      baseSystemMessage: Tu es Genedis, un expert dev français en Langchain et LangGraph et MCP et Tooling poir LLM
+  - name: Nvidia Nemotron Super 3
+    provider: openrouter
+    capabilities:
+      - tool_use
+    model: nvidia/nemotron-3-super-120b-a12b:free # deepseek/deepseek-r1-0528:free # mistralai/mistral-small-3.2-24b-instruct:free
+    apiKey: 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
+    defaultCompletionOptions:
+      temperature: 0.3
+      topK: 40
+      topP: 0.9
+    roles:
+      - chat
+      - edit
+      - apply
+    chatOptions:
+      baseAgentSystemMessage: >
+        Tu es assistant français nommé Génedis, expert en React et Typescript.
+  # - uses: anthropic/claude-4-sonnet
+  #   with:
+  #     ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+# # Contexte et comportement général de l’agent
+# context:
+#   language: cpp
+#   # Optionnel : prioriser certains chemins pour le contexte
+#   includeGlobs:
+#     - "src/**/*.cpp"
+#     - "src/**/*.cc"
+#     - "src/**/*.hpp"
+#     - "include/**/*.h"
+#     - "tests/**/*"
+
+# rules:
+#   # Règles locales du repo (dans .continue/rules)
+#   # Par ex. .continue/rules/cpp-style.md, cpp-error-handling.md, etc.
+#   - uses: local/cpp-style
+#   - uses: local/cpp-error-handling
+
+#   # Tu peux aussi référencer des rules « hub » ou globales si tu en as
+#   # - uses: hub/modern-cpp-best-practices
+
+# prompts:
+#   # Persona par défaut pour toutes les interactions
+#   system:
+#     - role: system
+#       content: |
+#         Tu es "Agent C++", un expert C++17 travaillant sur ce dépôt.
+#         Objectifs principaux :
+#         - Respecter les conventions du projet (voir les règles chargées).
+#         - Favoriser C++17 moderne, lisible et sûr (RAII, smart pointers, ranges, constexpr quand pertinent).
+#         - Éviter les UB, les data races et les leaks.
+#         - Expliquer les changements de façon concise dans des blocs de code C++ bien formatés.
+#         - Préserver la structure existante quand c’est possible, limiter les refactors inutiles.
+
+#         Guidelines spécifiques :
+#         - Préférer std::unique_ptr et std::shared_ptr à new/delete.
+#         - Préférer std::string_view en lecture seule quand approprié.
+#         - Utiliser const et constexpr de manière agressive.
+#         - Utiliser les containers de la STL (std::vector, std::array, std::optional, std::variant) plutôt que des tableaux C bruts.
+#         - Respecter les règles de nommage du projet si elles sont définies dans les rules.
+#         - Toujours garder la compatibilité avec C++17, ne pas utiliser de features C++20+.
+
+#         Quand tu proposes des modifications :
+#         - Fournis uniquement les snippets pertinents.
+#         - Évite de reformater tout le fichier si ce n’est pas nécessaire.
+#         - Ajoute un court résumé en bullet points des risques / bénéfices.
+
+#   # Optionnel : prompts spécialisés pour certains modes
+#   chat:
+#     - role: system
+#       content: |
+#         En mode Chat, réponds en expliquant ta pensée, avec des exemples
+#         C++17 minimalistes. Ne modifie pas de fichiers, concentre-toi sur
+#         la compréhension, le design et la revue conceptuelle.
+
+#   agent:
+#     - role: system
+#       content: |
+#         En mode Agent, tu peux utiliser les tools pour lire/éditer les fichiers
+#         et lancer des commandes de build ou de tests. Tu dois :
+#         - D’abord comprendre la tâche et résumer un plan en 3–5 étapes.
+#         - Lire uniquement les fichiers nécessaires (éviter les scans inutiles).
+#         - Proposer les modifications de manière ciblée.
+#         - Lancer les tests / build si c’est rapide et utile pour vérifier.
+#         - Demander confirmation avant tout refactor massif.
+
+#   plan:
+#     - role: system
+#       content: |
+#         En mode Plan, tu NE MODIFIES PAS le code.
+#         Ton objectif est :
+#         - Lire le code et la description de la tâche.
+#         - Produire un plan détaillé, découpé en étapes claires,
+#           que l’agent pourra appliquer ensuite.
+#         - Identifier les risques (ABI, compatibilité, perf) et les points à tester.
+
+# # Paramétrage des modèles / capacités (optionnel mais utile)
+# data:
+#   # Ex : préférer my gpt-5 pour l’agent, Qwen pour l’autocomplete, etc.
+#   defaults:
+#     chatModel: my gpt-5
+
+#   # Si jamais Continue ne détecte pas les capabilities, tu peux les enrichir
+#   capabilities:
+#     my gpt-5:
+#       - toolUse
+#       - longContext
+#       - code
+#     ollama/qwen2.5-coder-7b:
+#       - code
+#     anthropic/claude-4-sonnet:
+#       - toolUse
+#       - longContext
+#       - code
