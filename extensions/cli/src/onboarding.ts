@@ -8,11 +8,7 @@ import { AuthConfig, login } from "./auth/workos.js";
 import { getApiClient } from "./config.js";
 import { loadConfiguration } from "./configLoader.js";
 import { env } from "./env.js";
-import {
-  getApiKeyValidationError,
-  isValidAnthropicApiKey,
-} from "./util/apiKeyValidation.js";
-import { question, questionWithChoices } from "./util/prompt.js";
+import { question } from "./util/prompt.js";
 import { updateAnthropicModelInYaml } from "./util/yamlConfigUpdater.js";
 
 const CONFIG_PATH = path.join(env.continueHome, "config.yaml");
