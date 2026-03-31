@@ -60,6 +60,16 @@ export NODE_OPTIONS=--max-old-space-size=12096
 # NODE_OPTIONS="--max-old-space-size=4096" npm run build
 # popd
 
+pushd extensions/vscode
+echo "Clear dependencies Vscode"
+npm cache clean --force
+# rm -rf node_modules package-lock.json
+# npm install
+npm install @vscode/ripgrep --force
+npm install @lancedb/vectordb-win32-x64-msvc --force
+# npm rebuild sqlite3
+popd
+
 # VSCode Extension (will also package GUI)
 echo "Installing VSCode extension dependencies..."
 pushd extensions/vscode
@@ -67,7 +77,7 @@ pushd extensions/vscode
 npm install
 npm link @continuedev/core
 # npm run prepackage # not required since npm run package has prescript of prepackage
-npm run package-all
+npm run package
 popd
 
 echo "Installing binary dependencies..."
@@ -76,10 +86,10 @@ npm install
 npm run build
 popd
 
-echo "Installing docs dependencies..."
-pushd docs
-npm install
-popd
+# echo "Installing docs dependencies..."
+# pushd docs
+# npm install
+# popd
 
 
 

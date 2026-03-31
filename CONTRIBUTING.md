@@ -60,6 +60,7 @@ Continue is quickly adding features, and we'd love to hear which are the most im
 an enhancement are:
 
 - Create an issue
+
   - First, check whether a similar proposal has already been made
   - If not, [create an issue](https://github.com/continuedev/continue/issues)
   - Please describe the enhancement in as much detail as you can, and why it would be useful
@@ -114,7 +115,7 @@ process as welcoming and straightforward as possible.
 
 #### Pre-requisites
 
-You should have Node.js version 20.19.0 (LTS) or higher installed. You can get it
+You should have Node.js version 20.20.1 (LTS) or higher installed. You can get it
 on [nodejs.org](https://nodejs.org/en/download) or, if you are using NVM (Node Version Manager), you can set the correct
 version of Node.js for this project by running the following command in the root of the project:
 
@@ -145,6 +146,7 @@ npm i -g vite
    `install-all-dependencies`
 
 2. Start debugging:
+
    1. Switch to Run and Debug view
    2. Select `Launch extension` from drop down
    3. Hit play button
